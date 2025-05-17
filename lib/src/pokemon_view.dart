@@ -38,7 +38,9 @@ class PokemonView extends StatelessWidget{
                   Navigator.push(context,
                       MaterialPageRoute(
                           builder: (context) {
-                            return PokemonDetailView(title: listName[position],);
+                            return PokemonDetailView(
+                              title: listName[position],
+                            );
                           }
                       )
                   );

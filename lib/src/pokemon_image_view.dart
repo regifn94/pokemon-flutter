@@ -48,7 +48,10 @@ class PokemonImageView extends StatelessWidget{
                   Navigator.push(context,
                       MaterialPageRoute(
                           builder: (context) {
-                            return PokemonDetailView(title: listPokemon[position].name,);
+                            return PokemonDetailView(
+                              title: listPokemon[position].name,
+                              image: listPokemon[position].image,
+                            );
                           }
                       )
                   );

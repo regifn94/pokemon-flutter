@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class PokemonDetailView extends StatefulWidget {
 
   final String? title;
+  final String? image;
 
   const PokemonDetailView({
     Key? key,
-    this.title
+    this.title,
+    this.image
   }) : super(key: key);
 
   @override
@@ -17,10 +19,12 @@ class _PokemonDetailViewState extends State<PokemonDetailView> with SingleTicker
   late AnimationController _controller;
 
   String myTitle = "";
+  String myImage = "";
 
   @override
   void initState() {
     myTitle = widget.title ?? myTitle;
+    myImage = widget.image ?? myImage;
 
     super.initState();
     _controller = AnimationController(vsync: this);
@@ -30,6 +34,10 @@ class _PokemonDetailViewState extends State<PokemonDetailView> with SingleTicker
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(myTitle),),
+      body: Container(
+        margin: EdgeInsets.all(50),
+        child: myImage.isNotEmpty ? Image.asset(myImage) : Container(),
+      ),
     );
   }
 }
