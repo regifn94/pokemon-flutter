@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:my_pokemon/src/pokemon_custom_view.dart';
 import 'package:my_pokemon/src/pokemon_image_view.dart';
 import 'package:my_pokemon/src/pokemon_view.dart';
 
 void main() {
   // runApp(const MyApp());
   // runApp(MaterialApp(home: PokemonView(),));
-  runApp(MaterialApp(home: PokemonImageView(),));
+  // runApp(MaterialApp(home: PokemonImageView(),));
+  runApp(MaterialApp(home: PokemonCustomView(),));
 }
 
 class MyApp extends StatelessWidget {

@@ -1,34 +1,67 @@
 import 'package:flutter/material.dart';
 import 'package:my_pokemon/src/pokemon_detail_view.dart';
 import 'package:my_pokemon/src/pokemon_model.dart';
+import 'package:sn_progress_dialog/progress_dialog.dart';
 
-class PokemonImageView extends StatelessWidget{
+class PokemonCustomView extends StatefulWidget {
+  const PokemonCustomView({super.key});
 
-  List<PokemonModel> listPokemon = [
+  @override
+  State<PokemonCustomView> createState() => _PokemonCustomViewState();
+}
+
+class _PokemonCustomViewState extends State<PokemonCustomView> {
+
+  List<PokemonModel> listPokemon = [];
+
+  List<PokemonModel> listData = [
     PokemonModel("Abomasnow", "images/abomasnow.png"),
     PokemonModel("Abra", "images/abra.png"),
     PokemonModel("Accelgor", "images/accelgor.png"),
     PokemonModel("Absol", "images/absol.png"),
     PokemonModel("Aegislash Shield", "images/aegislash-shield.png"),
-    PokemonModel("aerodactyl", "images/aerodactyl.png"),
-    PokemonModel("aggron", "images/aggron.png"),
-    PokemonModel("aipom", "images/aipom.png"),
-    PokemonModel("alakazam", "images/alakazam.png")
+    PokemonModel("Aerodactyl", "images/aerodactyl.png"),
+    PokemonModel("Aggron", "images/aggron.png"),
+    PokemonModel("Aipom", "images/aipom.png"),
+    PokemonModel("Alakazam", "images/alakazam.png"),
+    PokemonModel("Alomomola", "images/alomomola.png"),
+    PokemonModel("Altaria", "images/altaria.png"),
   ];
 
-  // @override
-  // void initState() {
-  //   // print("initState : listName ${listName[0].toString()}");
-  //   // listName.forEach((element){
-  //   //   print("initState : element ${element.toString()}");
-  //   // });
-  //   super.initState();
-  // }
+  var countPokemon = 0;
+
+  void addData(){
+    if(countPokemon <12) {
+      print("addData: countPokemon ${countPokemon}");
+      setState(() {
+        listPokemon.add(listData[countPokemon]);
+        countPokemon ++;
+      });
+    }
+  }
+
+  void loadData(){
+    ProgressDialog pd = ProgressDialog(context: context);
+    pd.show(msg: "Pokemon Loading...");
+    Future.delayed(Duration(seconds: 2), (){
+      setState(() {
+        listPokemon = listData;
+        pd.close();
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("My Pokemon"),),
+      floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: (){
+            // loadData();
+            addData();
+          },
+      ),
       body: ListView.builder(
           itemCount: listPokemon.length,
           itemBuilder: (context, position){
